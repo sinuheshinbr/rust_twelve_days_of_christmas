@@ -1,17 +1,17 @@
 fn main() {
     let gifts = [
-        "A partridge in a pear tree",
+        "a partridge in a pear tree",
         "Two turtle doves",
         "Three French hens",
-        "four calling birds",
-        "five gold rings",
-        "six geese a-laying",
-        "seven swans a-swimming",
-        "eight maids a-milking",
-        "nine ladies dancing",
-        "ten lords a-leaping",
-        "eleven pipers piping",
-        "twelve drummers drumming",
+        "Four calling birds",
+        "Five gold rings",
+        "Six geese a-laying",
+        "Seven swans a-swimming",
+        "Eight maids a-milking",
+        "Nine ladies dancing",
+        "Ten lords a-leaping",
+        "Eleven pipers piping",
+        "Twelve drummers drumming",
     ];
 
     let ordinal = [
@@ -19,17 +19,20 @@ fn main() {
         "tenth", "eleventh", "twelfth",
     ];
 
-    let mut lyrics = String::new();
-
-    for (i, gift) in gifts.iter().enumerate() {
-        let current_lyrics = lyrics.clone();
-
-        let new_verse = format!(
-            "On the {} day of Christmas\nmy true love sent to me \n{}\n",
-            ordinal[i], gift
+    for day in 1..=12 {
+        println!(
+            "On the {} day of Christmas\nmy true love sent to me:",
+            ordinal[day - 1],
         );
-
-        lyrics = format!("{}\n{}", current_lyrics, new_verse);
-        println!("{lyrics}");
+        for gift in (1..=day).rev() {
+            match gift {
+                _ if gift == 1 => println!(
+                    "{}{}\n",
+                    if day != 1 { "and " } else { "" },
+                    gifts[gift - 1]
+                ),
+                _ => println!("{}", gifts[gift - 1]),
+            }
+        }
     }
 }
